@@ -11,7 +11,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "devDependencies": {
+  "devDependencies": { 
     "nodemon": "^3.1.10",
     "prettier": "3.6.2"
   }
