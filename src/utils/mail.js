@@ -1,4 +1,3 @@
-import { text } from "express";
 import Mailgen from "mailgen";
 import nodemailer from "nodemailer";
 
@@ -11,9 +10,9 @@ const sendEmail = async (options) => {
     },
   });
 
-  const emailTextual = mailGenerator.generatePlaintext(options.mailgenConent);
+  const emailTextual = mailGenerator.generatePlaintext(options.mailgenContent);
 
-  const emailHtml = mailGenerator.generate(options.mailgenConent);
+  const emailHtml = mailGenerator.generate(options.mailgenContent);
 
   const transporter = nodemailer.createTransport({
     host: process.env.MAILTRAP_SMTP_HOST, 

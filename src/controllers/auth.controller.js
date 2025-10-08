@@ -23,8 +23,9 @@ const generateAccessAndRefreshTokens = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { email, username, password, role } = req.body;
+  console.log("registerUser body:", req.body);
 
-  const existingUser = User.findOne({
+  const existingUser = await User.findOne({
     $or: [{ username }, { email }],
   });
 
@@ -35,7 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
     );
   }
 
-  const user = User.create({
+  const user = await User.create({
     email,
     password,
     username,
@@ -59,7 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
     ),
   });
   const createdUser = await User.findById(user._id).select(
-    "-pasword -refereshToken -emailVerificationToken -emailVerificationExpiry",
+    "-password -refereshToken -emailVerificationToken -emailVerificationExpiry",
   );
   if (!createdUser) {
     throw new ApiError(500, "Something went wrong while registering user ");
@@ -75,4 +76,4 @@ const registerUser = asyncHandler(async (req, res) => {
     );
 });
 
-export {registerUser} ;
+export { registerUser };

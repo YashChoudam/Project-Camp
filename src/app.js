@@ -20,7 +20,12 @@ app.use(
 // Import the routes 
 import healthCheckRouter from "./routes/healthcheck.routes.js";
 
+app.use(express.json());
 app.use("/api/v1/healthcheck",healthCheckRouter);
+
+// Import  authROuter 
+import authRouter from "./routes/auth.routes.js" ;
+app.use("/api/v1/auth",authRouter) ;
 
 app.get("/", (req, res) => {
 res.send("Welcome to the project camp");
